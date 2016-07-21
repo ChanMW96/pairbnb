@@ -1,0 +1,46 @@
+<!-- Uses a header that scrolls with the text, rather than staying
+  locked at the top -->
+<!DOCTYPE html>
+<html>
+<head>
+  <%= javascript_include_tag 'application' %>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+<div class="mdl-layout mdl-js-layout">
+  <header class="mdl-layout__header mdl-layout__header--scroll">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">Pair BnB</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation -->
+      <nav class="mdl-navigation">
+        <%= link_to t(".sign_up"), sign_up_path,html: {class: "mdl-navigation__link"} %>
+        <% if signed_in? -%>
+          <%= button_to t(".sign_out"), sign_out_path, method: :delete,html: {class: "mdl-navigation__link"} %>
+        <% else -%>
+          <%= link_to t(".sign_in"), sign_in_path,html: {class: "mdl-navigation__link"} %>
+        <% end -%>
+      </nav>
+    </div>
+  </header>
+  <main class="mdl-layout__content">
+    <div class="page-content">
+      <%= yield %>
+    </div>
+  </main>
+<
+</body>
+</html>
