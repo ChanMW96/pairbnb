@@ -1,26 +1,23 @@
 Rails.application.routes.draw do
-  get 'listing/new'
+  get 'tag/create'
 
-  get 'listing/create'
+  get 'tag/destroy'
 
-  get 'listing/edit'
+  get 'tag/update'
 
-  get 'listing/update'
-
-  get 'listing/destroy'
-
-  get 'listing/index'
-
-  get 'listing/show'
-
-  get 'listing/search'
+  resources :listings, controller: "listings"
+  resource :listings do 
+    collection do
+      post 'search'
+    end
+  end
 
   get 'home/index'
 
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
   resources :users, only: [:show, :edit, :update, :destroy] 
-  resources :users, controller: "clearance/users", only: [:create] do
+  resources :users, controller: "users", only: [:create] do
     resource :password,
       controller: "clearance/passwords",
       only: [:create, :edit, :update]

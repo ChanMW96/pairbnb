@@ -1,0 +1,7 @@
+
+<h1><%= @listing.title %></h1>
+<p>Location: <%= @listing.location %></p>
+<p>Price: <%= @listing.price %></p>
+<p>Max Pax: <%= @listing.max_pax %></p>
+
+<%= button_to 'Destroy listing', listing_path(@listing), method: :delete %>

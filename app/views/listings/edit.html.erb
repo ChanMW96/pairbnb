@@ -1,0 +1,25 @@
+<h2><%= t(".title") %></h2>
+
+<%= form_for @listing do |form| %>
+  <div class="text-field">
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.label :location %>
+  <%= form.text_field :location %>
+  <%= form.label :max_pax %>
+  <%= form.number_field :max_pax %>
+  <%= form.label :price %>
+  <%= form.number_field :price %>
+  <%= form.label :image %>
+  <%= form.file_field :listing_image, multiple: true %>
+</div>
+
+<div class="submit-field">
+  <%= form.submit %>
+</div>
+
+<div class="other-links">
+  <%= link_to t(".sign_in"), sign_in_path %>
+</div>
+<% end %>
+

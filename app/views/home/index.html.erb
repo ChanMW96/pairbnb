@@ -1,2 +1,9 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+
+<%= form_for(@listings, url: search_listings_path, method:'post', html: {id: "search"}) do |f| %>
+	<%= f.text_field :location %>
+	<%= f.submit :submit %>
+	<%= f.collection_check_boxes(:tag_ids, ActsAsTaggableOn::Tag.all, :id, :name) %>
+
+<% end %>
+<div id='block'>
+</div>

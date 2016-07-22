@@ -5,6 +5,7 @@ class CreateListings < ActiveRecord::Migration
       t.string :location
       t.integer :price
       t.integer :max_pax
+      t.integer :user_id
 
       t.timestamps null: false
     end
