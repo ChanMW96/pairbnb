@@ -5,16 +5,34 @@ class ListingsController < ApplicationController
 
   def search
     @listings = Listing.where("location LIKE ?","#{params[:listing][:location]}%")
+    @check_in = params[:listing][:duration].split(' - ')[0]
+    @check_out = params[:listing][:duration].split(' - ')[1]
+
     res=[]
+
     arr = params[:listing][:tag_ids].map! {|t| t.to_i }
     tags = ActsAsTaggableOn::Tag.where(id:arr)
+
     @listings.each do |listing|
+      byebug
+      valid = true
+      listing.reservations.each do |reservation|
+        byebug
+        valid = false;break if !reservation.check(Date.strptime(@check_in,"%d-%m-%Y"),Date.strptime(@check_out,"%d-%m-%Y"))
+      end
+
+      next if !valid
+
       if (tags-listing.tags).empty?
         res << listing
       end
     end
 
-    render json: res
+    @listings = res.empty? ? Listing.all : res
+    respond_to do |format|
+      format.js
+      format.json {render json: res}
+    end
   end
 
   def index
@@ -57,7 +75,7 @@ class ListingsController < ApplicationController
   end
 
   def listing_params
-    params.require(:listing).permit(:title,:location,:price,:max_pax,:tag_list)
+    params.require(:listing).permit(:title,:location,:price,:max_pax,:tag_list,{images:[]})
   end
 
   def set_listing

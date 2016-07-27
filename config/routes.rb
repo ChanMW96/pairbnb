@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :reservations, controller: "reservations"
+
   get 'tag/create'
 
   get 'tag/destroy'

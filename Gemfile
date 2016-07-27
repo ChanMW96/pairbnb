@@ -28,6 +28,9 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'acts-as-taggable-on'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'jquery-rails'
+gem 'momentjs-rails'
+gem 'bootstrap-daterangepicker-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

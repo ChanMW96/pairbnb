@@ -3,5 +3,9 @@
 <p>Location: <%= @listing.location %></p>
 <p>Price: <%= @listing.price %></p>
 <p>Max Pax: <%= @listing.max_pax %></p>
-
-<%= button_to 'Destroy listing', listing_path(@listing), method: :delete %>
+<% @listing.images.each do |image| %>
+	<%= image_tag(image) %>
+<% end %>
+<% if current_user.id == @listing.user_id %>
+	<%= button_to 'Destroy listing', listing_path(@listing), method: :delete %>
+<% end %>

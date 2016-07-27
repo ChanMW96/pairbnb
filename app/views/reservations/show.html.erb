@@ -1,0 +1,4 @@
+<h1> <%= User.find(current_user.id).email %> </h1>
+<h3> <%= Listing.find(@reservation.listing_id).title %></h3>
+<p>Start date: <%= @reservation.start_date%></p>
+<p>End date: <%= @reservation.end_date%></p>

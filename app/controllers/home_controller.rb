@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-  	@listings=Listing.new
+  	@listings = Listing.all
   end
 end

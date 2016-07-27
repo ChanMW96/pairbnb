@@ -1,0 +1,9 @@
+<h1> <%= User.find(current_user.id).email %> </h1>
+
+<%= form_for(:reservation,url: reservations_path, method:'post') do |f| %>
+	<%= f.hidden_field :listing_id, value:@reservation.listing_id %>
+	<%= f.text_field :title, value:Listing.find(@reservation.listing_id).title, readonly:true%>
+	<%= f.text_field :start_date, value:@reservation.start_date, readonly:true%>
+	<%= f.text_field :end_date, value:@reservation.end_date, readonly:true%>
+	<%= f.submit "Confirm" %>
+<% end %>

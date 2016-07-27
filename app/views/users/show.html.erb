@@ -1,2 +1,5 @@
 <h1><%= @user.email %></h1>
 <%= image_tag(@user.image) %>
+<% @user.reservations.each do |reservation| %>
+	<%= Listing.find(reservation.listing_id).title %>
+<% end %>

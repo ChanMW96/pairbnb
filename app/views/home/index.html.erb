@@ -1,9 +1,11 @@
 
-<%= form_for(@listings, url: search_listings_path, method:'post', html: {id: "search"}) do |f| %>
+<%= form_for(:listing, url: search_listings_path, method:'post', html: {id: "search"}, remote: true) do |f| %>
 	<%= f.text_field :location %>
-	<%= f.submit :submit %>
+	<%= f.text_field :duration, class: "daterange" %>
 	<%= f.collection_check_boxes(:tag_ids, ActsAsTaggableOn::Tag.all, :id, :name) %>
-
+	<%= f.submit 'Submit', style: 'display:hidden;' %>
 <% end %>
+
 <div id='block'>
+	<%= render partial: 'listings' %>	
 </div>

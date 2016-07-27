@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
     has_many :authentications, :dependent => :destroy
     has_many :listings, :foreign_key => :user_id
     mount_uploader :image, UserImagesUploader
+    has_many :reservations, :foreign_key => :user_id
   def self.create_with_auth_and_hash(authentication,auth_hash)
     create! do |u|
       u.email = auth_hash["extra"]["raw_info"]["email"]

@@ -1,0 +1,11 @@
+<% @listings.each do |listing| %>
+	<div id='listing'<%= listing.id %>>
+		<%= link_to(listing.title, listings_path(listing.id), method:'get' ) %>
+		<%= form_for(:reservation, url:new_reservation_path, method:'get') do |e| %>
+			<%= e.hidden_field :listing_id, value: listing.id %>
+			<%= e.hidden_field :start_date, value: @check_in %>
+			<%= e.hidden_field :end_date, value: @check_out %>
+			<%= e.submit "Book Now" %>
+		<% end %>
+	</div>
+<% end %>
