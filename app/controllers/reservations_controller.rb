@@ -9,6 +9,8 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(start_date:params[:reservation][:start_date],end_date:params[:reservation][:end_date],user_id:current_user.id,listing_id:params[:reservation][:listing_id])
     @reservation.save
+    ReservationMailer.booking_email(current_user,User.find(Listing.find(@reservation.listing_id).user_id),@reservation.id).deliver_now
+    redirect_to user_path(current_user)
   end
 
   def edit
