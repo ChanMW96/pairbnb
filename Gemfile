@@ -31,6 +31,8 @@ gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'jquery-rails'
 gem 'momentjs-rails'
 gem 'bootstrap-daterangepicker-rails'
+gem 'sidekiq'
+gem 'sinatra', '>=1.3.0',require: false
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
